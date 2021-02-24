@@ -1,3 +1,9 @@
+Version 3
+[x] Add input field to add task
+[x] Add toggle all and delete all tasks buttons
+[x] Add refresh tasks button
+
+
 Version 2
 [x] Style the tasks table
 [x] Style the buttons

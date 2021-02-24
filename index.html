@@ -9,29 +9,41 @@
     <title>JS | Task manager practice</title>
 </head>
 <body>
-    <h1>Task Manager:</h1>
+    <h1 id="list-title" class="mb-4">Task Manager:</h1>
+    <div class="mb-1">
+        <input type="text" id="add-task" name="add-task" placeholder="New task name">
+        <button id="add-task-btn" class="btn-green">Add</button>
+        <span>
+            <button id="refresh" class="btn-green align-right mb-2">Refresh Tasks</button>
+        </span>
+    </div>
 
-    <table id="tasks-table">
+    <table id="tasks-table" class="mb-4">
         <tr id="task-0">
             <td><input type="checkbox"></td>
             <td class="text-left">First Task</td>
-            <td><button class="blue-button">Edit</button></td>
-            <td><button class="red-button">Remove</button></td>
+            <td><button class="btn-blue">Edit</button></td>
+            <td><button class="btn-red">Remove</button></td>
         </tr>
 
         <tr id="task-1">
             <td><input type="checkbox" checked="true"></td>
             <td class="text-left">Second Task</td>
-            <td><button class="blue-button">Edit</button></td>
-            <td><button class="red-button">Remove</button></td>
+            <td><button class="btn-blue">Edit</button></td>
+            <td><button class="btn-red">Remove</button></td>
         </tr>
 
         <tr id="task-2">
             <td><input type="checkbox"></td>
             <td class="text-left">Third Task</td>
-            <td><button class="blue-button">Edit</button></td>
-            <td><button class="red-button">Remove</button></td>
+            <td><button class="btn-blue">Edit</button></td>
+            <td><button class="btn-red">Remove</button></td>
         </tr>
     </table>
+
+    <div class="w-100">
+        <button class="btn-red align-right mx-1">Remove All</button>
+        <button class="btn-blue mx-1">Toggle All</button>
+    </div>
 </body>
 </html>

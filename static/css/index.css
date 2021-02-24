@@ -1,40 +1,20 @@
+body {
+    padding: 1rem;
+}
+
 h1 {
     color: green;
+    font-size: 3rem;
 }
 
 table {
-    width: 90%;
+    width: 100%;
 }
 
 td {
     font-size: 1.5rem;
     padding: 1rem;
     text-align: center;
-}
-
-button {
-    font-size: 1.5rem;
-    border-radius: .5rem;
-    border: none;
-    color: #fff;
-    padding: .8rem;
-    min-width: 10rem;
-}
-
-.text-left {
-    text-align: left;
-}
-
-.red-button {
-    background-color: #ff4f4f;
-}
-
-.gren-button {
-    background-color: #2ca732;
-}
-
-.blue-button {
-    background-color: #097cff;
 }
 
 /* Code from previous project */
@@ -45,8 +25,64 @@ tr:nth-child(odd) {
 tr:nth-child(even) {
     background-color: #fff;
 }
+/* End code */
+
+button {
+    font-size: 1.5rem;
+    border-radius: .5rem;
+    border: none;
+    color: #fff;
+    padding: .8rem;
+    min-width: 10rem;
+}
+
+input {
+    font-size: 1.5rem;
+    padding: .5rem;
+}
 
 input[type="checkbox"]{
     width: 25px;
     height: 25px;
   }
+
+.text-left {
+    text-align: left;
+}
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.mb-4 {
+    margin-bottom: 4rem;
+}
+
+.mx-1 {
+    margin-left: 1rem;
+    margin-right: 2rem;
+}
+
+.btn-red {
+    background-color: #ff4f4f;
+}
+
+.btn-green {
+    background-color: #2ca732;
+}
+
+.btn-blue {
+    background-color: #097cff;
+}
+
+.align-right {
+    float: right;
+}
+
+.w-100 {
+    width: 100%;
+}
