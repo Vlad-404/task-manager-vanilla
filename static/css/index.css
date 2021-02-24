@@ -50,6 +50,11 @@ input[type="checkbox"]{
     text-align: left;
 }
 
+.text-faded {
+    color: gray;
+    font-style: italic;
+}
+
 .mb-1 {
     margin-bottom: 1rem;
 }

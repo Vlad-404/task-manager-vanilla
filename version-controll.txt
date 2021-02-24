@@ -1,5 +1,9 @@
+Version 5
+[x] Add task functionality
+[x] Add check if task is complete
+
 Version 4
-[] Make JavaScript generate task list
+[x] Make JavaScript generate task list
     [x] function should render todos list in web page table
     [x] refresh button should update todos list
 
