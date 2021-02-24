@@ -29,18 +29,17 @@ showTasks = () => {
                 <td><input type="checkbox" checked="true"></td>
                 <td class="text-left text-faded">${tasks[i].taskText} (done)</td>
                 <td><button class="btn-blue">Edit</button></td>
-                <td><button class="btn-red">Remove</button></td>
+                <td><button id="remove-${i}" class="btn-red" onClick="removeTask(this.id.split('-')[1])">Remove</button></td>
             `
         } else {
             task.innerHTML = `
                 <td><input type="checkbox"></td>
                 <td class="text-left">${tasks[i].taskText}</td>
                 <td><button class="btn-blue">Edit</button></td>
-                <td><button class="btn-red">Remove</button></td>
+                <td><button id="remove-${i}" class="btn-red" onClick="removeTask(this.id.split('-')[1])">Remove</button></td>
             `
         }
     }
-    // console.log(tasksTable);
 }
 
 const refreshBtn = document.getElementById('refresh');
@@ -60,11 +59,27 @@ addTask = () => {
                 completed: false
             }
         )
+        taskInput.value = '';
         showTasks();
     }
 }
 
 const addBtn = document.getElementById('add-task-btn');
 addBtn.addEventListener('click', addTask);
+
+// Removes all tasks
+removeAll = () => {
+    tasks = [];
+    showTasks();
+}
+
+const removeAllBtn = document.getElementById('remove-all');
+removeAllBtn.addEventListener('click', removeAll);
+
+// Removes a single task
+removeTask = (taskId) => {
+    tasks.splice(taskId, 1);
+    showTasks();
+}
 
 showTasks();
