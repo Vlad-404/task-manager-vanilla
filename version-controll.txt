@@ -1,8 +1,12 @@
+Version 4
+[] Make JavaScript generate task list
+    [x] function should render todos list in web page table
+    [x] refresh button should update todos list
+
 Version 3
 [x] Add input field to add task
 [x] Add toggle all and delete all tasks buttons
 [x] Add refresh tasks button
-
 
 Version 2
 [x] Style the tasks table
