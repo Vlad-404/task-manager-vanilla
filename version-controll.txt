@@ -1,3 +1,7 @@
+Version 2
+[x] Style the tasks table
+[x] Style the buttons
+
 Version 1
 [x] Set up title
 [x] Create a basic preview table
