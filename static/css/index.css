@@ -84,6 +84,10 @@ input[type="checkbox"]{
     background-color: #097cff;
 }
 
+.btn-grey {
+    background-color: gray;
+}
+
 .align-right {
     float: right;
 }

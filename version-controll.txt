@@ -1,3 +1,11 @@
+Version 8
+[] Edit functionality
+    [x] Create input field instead of task text when using edit button
+    [x] Add functional cancel button
+    [] Add update task button
+    [x] Disable edit buttons from other tasks
+    [x] Add save on enter key
+
 Version 7
 [x] Toggle task completion
 [x] Togle all tasks functionality

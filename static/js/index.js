@@ -27,15 +27,15 @@ showTasks = () => {
         if (tasks[i].completed == true) {
             task.innerHTML = `
                 <td><input type="checkbox" checked="true" id="check-${i}" onClick="toggle(this)"></td>
-                <td class="text-left text-faded">${tasks[i].taskText} (done)</td>
-                <td><button class="btn-blue">Edit</button></td>
+                <td id="text-${i}" class="text-left text-faded">${tasks[i].taskText} (done)</td>
+                <td><button id="edit-${i}" class="btn-blue edit-btn" onClick="editTask(this)">Edit</button></td>
                 <td><button id="remove-${i}" class="btn-red" onClick="removeTask(this)">Remove</button></td>
             `
         } else {
             task.innerHTML = `
                 <td><input type="checkbox" id="check-${i}" onClick="toggle(this)"></td>
-                <td class="text-left">${tasks[i].taskText}</td>
-                <td><button class="btn-blue">Edit</button></td>
+                <td id="text-${i}" class="text-left">${tasks[i].taskText}</td>
+                <td><button id="edit-${i}" class="btn-blue edit-btn" onClick="editTask(this)">Edit</button></td>
                 <td><button id="remove-${i}" class="btn-red" onClick="removeTask(this)">Remove</button></td>
             `
         }
@@ -111,7 +111,6 @@ toggleAllButton.addEventListener('click', toggleAll);
 allToOneStatus = () => {
     for (let i=0; i<tasks.length; i++) {
         let tasksLength = Number(tasks.length - 1);
-        // console.log(tasksLength);
         if (tasks[tasksLength].completed == true) {
             tasks[i].completed = false;
         } else {
@@ -125,4 +124,55 @@ allToOneStatus = () => {
 const allToOne = document.getElementById('all-to-one-status');
 allToOne.addEventListener('click', allToOneStatus);
 
+// Edit task:
+// Accept input
+editTask = (grabbed) => {
+    let taskId = grabbed.id.split('-')[1];
+    grabbed.onclick = function() {
+        return false;
+      }
+    let inputId = 'text-' + taskId;
+    let editTaskInput = document.getElementById(inputId);
+
+    editTaskInput.innerHTML = `
+            <input id="edit-input" type="text" placeholder="Edit Task" value="${tasks[taskId].taskText}">
+        `;
+    
+    grabbed.innerText = 'Cancel';
+    grabbed.className = 'btn-grey';
+    grabbed.id = 'cancel';
+    let cancel = document.getElementById('cancel');
+    cancel.addEventListener('click', showTasks);
+
+    let disabledButtons = Array.from(document.getElementsByClassName('edit-btn'));    
+    disabledButtons.forEach(button => {
+        button.disabled = true;
+    });
+    
+    let newText = document.getElementById('edit-input');
+    editTaskInput.addEventListener('keypress', (event) => {
+        event.defaultPrevented;
+
+        if (event.keyCode == 13) {
+            updateTask(taskId, newText.value);
+        }
+    })
+}
+
+// Update Task
+updateTask = (id, newText) => {
+    console.log(id, newText);
+    tasks[id].taskText = newText;
+    showTasks();
+}
+
 showTasks();
+
+// var elements=document.getElementById('tasks-table').firstChild;
+// let secondChild = elements.[2];
+// console.log(secondChild);
+// elements.item(n)
+
+// var tables = document.getElementsByTagName('table');
+// var firstTable = tables.item(1);
+// console.log(firstTable);
