@@ -107,7 +107,7 @@ toggleAll = () => {
 const toggleAllButton = document.getElementById('toggle-all');
 toggleAllButton.addEventListener('click', toggleAll);
 
-// Toggle all to finished/unfinished
+// Toggle all as finished/unfinished
 allToOneStatus = () => {
     for (let i=0; i<tasks.length; i++) {
         let tasksLength = Number(tasks.length - 1);
@@ -137,7 +137,7 @@ editTask = (grabbed) => {
     editTaskInput.innerHTML = `
             <input id="edit-input" type="text" placeholder="Edit Task" value="${tasks[taskId].taskText}">
         `;
-    
+
     grabbed.innerText = 'Cancel';
     grabbed.className = 'btn-grey';
     grabbed.id = 'cancel';
@@ -157,13 +157,27 @@ editTask = (grabbed) => {
             updateTask(taskId, newText.value);
         }
     })
+
+    let updateButton = document.createElement('button');
+    
+    updateButton.innerText = 'Update';
+    updateButton.classList.add('btn-blue', 'mx-1');
+    updateButton.id = 'update-btn';
+    cancel.after(updateButton);
+    // console.log(updateButton);
+    updateButton.addEventListener('click', updateTask(taskId, newText.value));
 }
+//updateTask(taskId, newText.value)
 
 // Update Task
 updateTask = (id, newText) => {
     console.log(id, newText);
-    tasks[id].taskText = newText;
-    showTasks();
+    if (newText == tasks[id].taskText) {
+        return
+    } else {
+        tasks[id].taskText = newText;
+        showTasks();
+    }
 }
 
 showTasks();
