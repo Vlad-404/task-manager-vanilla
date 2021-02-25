@@ -26,17 +26,17 @@ showTasks = () => {
 
         if (tasks[i].completed == true) {
             task.innerHTML = `
-                <td><input type="checkbox" checked="true"></td>
+                <td><input type="checkbox" checked="true" id="check-${i}" onClick="toggle(this)"></td>
                 <td class="text-left text-faded">${tasks[i].taskText} (done)</td>
                 <td><button class="btn-blue">Edit</button></td>
-                <td><button id="remove-${i}" class="btn-red" onClick="removeTask(this.id.split('-')[1])">Remove</button></td>
+                <td><button id="remove-${i}" class="btn-red" onClick="removeTask(this)">Remove</button></td>
             `
         } else {
             task.innerHTML = `
-                <td><input type="checkbox"></td>
+                <td><input type="checkbox" id="check-${i}" onClick="toggle(this)"></td>
                 <td class="text-left">${tasks[i].taskText}</td>
                 <td><button class="btn-blue">Edit</button></td>
-                <td><button id="remove-${i}" class="btn-red" onClick="removeTask(this.id.split('-')[1])">Remove</button></td>
+                <td><button id="remove-${i}" class="btn-red" onClick="removeTask(this)">Remove</button></td>
             `
         }
     }
@@ -77,9 +77,52 @@ const removeAllBtn = document.getElementById('remove-all');
 removeAllBtn.addEventListener('click', removeAll);
 
 // Removes a single task
-removeTask = (taskId) => {
+removeTask = (grabbed) => {
+    let taskId = grabbed.id.split('-')[1];
     tasks.splice(taskId, 1);
     showTasks();
 }
+
+// Toggle Task
+toggle = (grabbed) => {
+    let taskId = grabbed.id.split('-')[1];
+    let oldStatus = tasks[taskId].completed;
+    tasks[taskId].completed = !oldStatus;
+    showTasks();
+}
+
+// Toggle all tasks
+toggleAll = () => {
+    for (let i=0; i<tasks.length; i++) {
+        if (tasks[i].completed == true) {
+            tasks[i].completed = false;
+        } else {
+            tasks[i].completed = true;
+        }
+    }
+
+    showTasks();
+}
+
+const toggleAllButton = document.getElementById('toggle-all');
+toggleAllButton.addEventListener('click', toggleAll);
+
+// Toggle all to finished/unfinished
+allToOneStatus = () => {
+    for (let i=0; i<tasks.length; i++) {
+        let tasksLength = Number(tasks.length - 1);
+        // console.log(tasksLength);
+        if (tasks[tasksLength].completed == true) {
+            tasks[i].completed = false;
+        } else {
+            tasks[i].completed = true;
+        }
+    }
+
+    showTasks();
+}
+
+const allToOne = document.getElementById('all-to-one-status');
+allToOne.addEventListener('click', allToOneStatus);
 
 showTasks();

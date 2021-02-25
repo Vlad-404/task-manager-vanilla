@@ -1,5 +1,10 @@
+Version 7
+[x] Toggle task completion
+[x] Togle all tasks functionality
+[] Toggle all to finished/not finished
+
 Version 6
-[x] Remove all tasks
+[x] Remove all tasks ability
 [x] Remove single task functionality
 
 Version 5
