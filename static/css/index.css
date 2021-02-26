@@ -55,6 +55,10 @@ input[type="checkbox"]{
     font-style: italic;
 }
 
+.mb-0 {
+    margin-bottom: 0;
+}
+
 .mb-1 {
     margin-bottom: 1rem;
 }

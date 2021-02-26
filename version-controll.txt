@@ -1,3 +1,12 @@
+Version 9
+[] Add change task manager title
+    [] Add click event
+    [] Add input field
+    [] Add cancel button
+    [] Add cancel on escape key
+    [] Add update button
+    [] Add update on enter key
+
 Version 8
 [] Edit functionality
     [x] Create input field instead of task text when using edit button

@@ -180,6 +180,9 @@ updateTask = (id, newText) => {
     }
 }
 
+// Changes the Task manager title
+
+
 showTasks();
 
 // var elements=document.getElementById('tasks-table').firstChild;
