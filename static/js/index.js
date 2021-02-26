@@ -181,7 +181,58 @@ updateTask = (id, newText) => {
 }
 
 // Changes the Task manager title
+// document.getElementById('change-title-link').addEventListener('click', () => {
+//     let oldTitle = document.getElementById('list-title').innerText;
+//     let titleDiv = document.getElementById('title-div');
+//     titleDiv.innerHTML = `
+//         <input id="title-input" placeholder="${oldTitle}">
+//         <span>
+//             <button id="title-cancel" class="btn-grey">Cancel</button>
+//         </span>
+//         <span>
+//             <button id="title-update" class="btn-blue">Change</button>
+//         </span>
+//     `;
+    
+//     console.log(oldTitle);
+// })
 
+let titleInput = document.getElementById('title-input');
+// let newTitle = titleInput.value;
+
+document.getElementById('title-cancel').addEventListener('click', () => {
+    titleInput.value = '';
+})
+
+document.getElementById('title-update').addEventListener('click', () => {
+    console.log(titleInput.value);
+
+    if (titleInput.value == '') {
+        alert('Please enter a new name for your list or click cancel')
+    } else {
+        document.getElementById('list-title').innerText = titleInput.value;
+        titleInput.value = '';
+    }
+})
+
+titleInput.addEventListener('keyup', (e) => {
+    e.preventDefault();
+
+    if (titleInput.value == '') {
+        alert('Please enter a new name for your list or click cancel')
+    } else {
+        if (e.code == 'Enter') {
+            updateTitle(titleInput.value);
+        } else if (e.code == 'Escape') {
+            titleInput.value = '';
+        }
+    }
+})
+
+updateTitle = (newTitle) => {
+    document.getElementById('list-title').innerText = newTitle;
+    titleInput.value = '';
+}
 
 showTasks();
 

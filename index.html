@@ -9,9 +9,16 @@
     <title>JS | Task manager practice</title>
 </head>
 <body>
-    <div class="mb-4">
-        <h1 id="list-title" class="mb-0">Task Manager:</h1>
-        <a href="" id="change-title-link">(Change title)</a>
+    <div id="title-div" class="mb-4">
+        <h1 id="list-title" class="mb-0">Task Manager</h1>
+        <!-- <a href="" id="change-title-link">(Change title)</a> -->
+        <input type="text" id="title-input">
+        <span>
+            <button id="title-cancel" class="btn-grey">Cancel</button>
+        </span>
+        <span>
+            <button id="title-update" class="btn-blue">Change</button>
+        </span>
     </div>
     <div class="mb-1">
         <input type="text" id="add-task" name="add-task" placeholder="New task name">

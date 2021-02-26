@@ -1,11 +1,11 @@
 Version 9
-[] Add change task manager title
-    [] Add click event
-    [] Add input field
-    [] Add cancel button
-    [] Add cancel on escape key
-    [] Add update button
-    [] Add update on enter key
+[x] Add change task manager title
+    [x] Add click events
+    [x] Add input field
+    [x] Add cancel button
+    [x] Add cancel on escape key
+    [x] Add update button
+    [x] Add update on enter key
 
 Version 8
 [] Edit functionality
@@ -14,7 +14,7 @@ Version 8
     [x] Disable edit buttons from other tasks
     [x] Add save on enter key
     [x] Add update task button
-    [] Add functionality to update button
+    [] Add update task functionality with a button
 
 Version 7
 [x] Toggle task completion
