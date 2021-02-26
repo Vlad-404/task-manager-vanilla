@@ -89,7 +89,7 @@ input[type="checkbox"]{
 }
 
 .btn-grey {
-    background-color: gray;
+    background-color: #8d8d8d;
 }
 
 .align-right {
@@ -98,4 +98,18 @@ input[type="checkbox"]{
 
 .w-100 {
     width: 100%;
+}
+
+.hide {
+    display: none;
+}
+
+.link {
+    text-decoration: underline;
+    color: #6eb2ff;
+    font-style: italic;
+}
+
+#change-title-link {
+    width: 15%;
 }

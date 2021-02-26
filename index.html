@@ -10,15 +10,18 @@
 </head>
 <body>
     <div id="title-div" class="mb-4">
-        <h1 id="list-title" class="mb-0">Task Manager</h1>
-        <!-- <a href="" id="change-title-link">(Change title)</a> -->
-        <input type="text" id="title-input">
-        <span>
-            <button id="title-cancel" class="btn-grey">Cancel</button>
-        </span>
-        <span>
-            <button id="title-update" class="btn-blue">Change</button>
-        </span>
+        <h1 id="list-title" class="mb-0">Task List</h1>
+        <p id="change-title-link" class="link">(Change title)</p>
+        <!-- Elements for edit title -->
+        <div id="edit-title-div" class="hide">
+            <input type="text" id="title-input">
+            <span>
+                <button id="title-cancel" class="btn-grey">Cancel</button>
+            </span>
+            <span>
+                <button id="title-update" class="btn-blue">Change</button>
+            </span>
+        </div>
     </div>
     <div class="mb-1">
         <input type="text" id="add-task" name="add-task" placeholder="New task name">
@@ -58,6 +61,9 @@
         <button id="all-to-one-status" class="btn-red mx-1">All to Finished/Not Finished</button>
     </div>
 
-    <!-- <button class="btn-blue">Test</button> -->
+    <button id="test-01" class="btn-blue test-button">Test1</button>
+    <button id="test-02" class="btn-blue test-button">Test2</button>
+    <button id="test-03" class="btn-blue test-button">Test3</button>
+    <button id="test-04" class="btn-blue test-button">Test4</button>
 </body>
 </html>
