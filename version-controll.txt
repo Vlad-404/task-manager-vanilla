@@ -1,5 +1,5 @@
 Version 10
-[] Add enter and escape key events for new task input
+[x] Add enter and escape key events for new task input
 
 Version 9
 [x] Add change task manager title

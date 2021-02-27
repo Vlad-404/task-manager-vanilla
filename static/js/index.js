@@ -76,6 +76,28 @@ addTask = () => {
 const addBtn = document.getElementById('add-task-btn');
 addBtn.addEventListener('click', addTask);
 
+const addTaskInput = document.getElementById('add-task');
+addTaskInput.addEventListener('keyup', (e) => {
+    e.preventDefault();
+     
+    if (e.code == 'Enter') {
+        if (addTaskInput.value == '') {
+            alert('Please enter a name for your task!')
+        } else {
+            tasks.push(
+                {
+                    taskText: addTaskInput.value,
+                    completed: false
+                }
+            )
+            addTaskInput.value = '';
+            showTasks();
+        }
+    } else if (e.code == 'Escape') {
+        addTaskInput.value = '';
+    }
+})
+
 // Removes all tasks
 removeAll = () => {
     tasks = [];
