@@ -48,6 +48,7 @@ showTasks = () => {
             `
         }
     }
+    editTask();
 }
 
 const refreshBtn = document.getElementById('refresh');
@@ -134,45 +135,58 @@ allToOne.addEventListener('click', allToOneStatus);
 
 // Edit task:
 // Accept input
-editTask = (grabbed) => {
-    let taskId = grabbed.id.split('-')[1];
-    grabbed.onclick = function() {
-        return false;
-      }
-    let inputId = 'text-' + taskId;
-    let editTaskInput = document.getElementById(inputId);
+editTask = () => {
+    let allEditButtons = Array.from(document.getElementsByClassName('edit-btn'));
+    allEditButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            allEditButtons.forEach(b => {
+                b.classList.toggle('hide');
+            })
+            let taskId = button.id.split('-')[1];
+            let inputId = 'text-' + taskId;
+            let editTaskInput = document.getElementById(inputId);
+            let cancelButton = document.getElementById(`cancel-${taskId}`);
+            let updateTaskButton = document.getElementById(`updatebtn-${taskId}`);
+            cancelButton.classList.toggle('hide');
+            updateTaskButton.classList.toggle('hide');
 
-    editTaskInput.innerHTML = `
-            <input id="edit-input" type="text" placeholder="Edit Task" value="${tasks[taskId].taskText}">
-        `;
 
-    grabbed.innerText = 'Cancel';
-    grabbed.className = 'btn-grey';
-    grabbed.id = 'cancel';
-    let cancel = document.getElementById('cancel');
-    cancel.addEventListener('click', showTasks);
+            editTaskInput.innerHTML = `
+                <input id="edit-input" type="text" placeholder="Edit Task" value="${tasks[taskId].taskText}">
+            `;
 
-    let disabledButtons = Array.from(document.getElementsByClassName('edit-btn'));    
-    disabledButtons.forEach(button => {
-        button.disabled = true;
+            cancelButton.addEventListener('click', () => {
+                showTasks();
+            })
+
+            let newText = document.getElementById('edit-input');
+            updateTaskButton.addEventListener('click', () => {
+                if (newText.value == '') {
+                    alert('New Task name cannot be empty!')
+                } else if (newText.value == tasks[taskId].taskText) {
+                    showTasks();
+                } else {
+                    updateTask(taskId, newText.value);
+                }
+            })
+
+            newText.addEventListener('keyup', (e) => {
+                e.preventDefault();
+
+                if (e.code == 'Enter') {
+                    if (newText.value == '') {
+                        alert('New Task name cannot be empty!')
+                    } else if (newText.value == tasks[taskId].taskText) {
+                        showTasks();
+                    } else {
+                        updateTask(taskId, newText.value);
+                    }
+                } else if (e.code == 'Escape') {
+                    showTasks();
+                }
+            })
+        })
     });
-    
-    let newText = document.getElementById('edit-input');
-    editTaskInput.addEventListener('keypress', (event) => {
-        event.defaultPrevented;
-
-        if (event.code == 'Enter') {
-            updateTask(taskId, newText.value);
-        }
-    })
-
-    let updateButton = document.createElement('button');
-    
-    updateButton.innerText = 'Update';
-    updateButton.classList.add('btn-blue', 'mx-1');
-    updateButton.id = 'update-btn';
-    cancel.after(updateButton);
-    updateButton.addEventListener('click', updateTask(taskId, newText.value));
 }
 
 // Update Task
@@ -181,6 +195,7 @@ updateTask = (id, newText) => {
         return
     } else {
         tasks[id].taskText = newText;
+        tasks[id].completed = false;
         showTasks();
     }
 }
@@ -216,7 +231,6 @@ document.getElementById('title-update').addEventListener('click', () => {
 // Ads escape and enter key events for title input field
 titleInput.addEventListener('keyup', (e) => {
     e.preventDefault();
-    let oldTitle = document.getElementById('list-title');
      
     if (e.code == 'Enter') {
         if (titleInput.value == '') {
@@ -236,85 +250,8 @@ updateTitle = (newTitle) => {
     toggleTitleToolsVisibility();
 }
 
-
-
+editTask();
 showTasks();
-
-for (let i=0; i<tasks.length; i++) {
-    let allEditButtons = Array.from(document.getElementsByClassName('edit-btn'));
-    // let cancelButton = document.getElementById(`cancel-${[i]}`);
-    // console.log(cancelButton);
-    allEditButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            allEditButtons.forEach(b => {
-                b.disabled = true;
-            })
-            let taskId = button.id.split('-')[1];
-            let inputId = 'text-' + taskId;
-            let editTaskInput = document.getElementById(inputId);
-            let cancelButton = document.getElementById(`cancel-${taskId}`);
-            let updateTaskButton = document.getElementById(`updatebtn-${taskId}`);
-            button.classList.toggle('hide');
-            cancelButton.classList.toggle('hide');
-            updateTaskButton.classList.toggle('hide');
-
-
-            editTaskInput.innerHTML = `
-            <input id="edit-input" type="text" placeholder="Edit Task" value="${tasks[taskId].taskText}">
-            `;
-
-            cancelButton.addEventListener('click', () => {
-                allEditButtons.forEach(b => {
-                    b.disabled = false;
-                })
-                showTasks();
-            })
-
-            let newText = document.getElementById('edit-input');
-            updateTaskButton.addEventListener('click', () => {
-                if (newText.value == '') {
-                    alert('New Task name cannot be empty!')
-                } else if (newText.value == tasks[i].taskText) {
-                    showTasks();
-                } else {
-                    updateTask(taskId, newText.value);
-                }
-            })
-
-            newText.addEventListener('keyup', (e) => {
-                e.preventDefault();
-                console.log('Event: ' + e.code, 'Input field: ' + newText.value, 'Value from tasks: ' + tasks[taskId].taskText);
-
-                if (e.code == 'Enter') {
-                    if (newText.value == '') {
-                        alert('New Task name cannot be empty!')
-                    } else if (newText.value == tasks[taskId].taskText) {
-                        showTasks();
-                    } else {
-                        updateTask(taskId, newText.value);
-                    }
-                } else if (e.code == 'Escape') {
-                    showTasks();
-                }
-            })
-
-            // console.log(cancelButton);
-        })
-    });
-}
-
-// for (let i=0; i<4; i++) {
-//     let allTestButtons = Array.from(document.getElementsByClassName('test-button'));
-//     allTestButtons.forEach(button => {
-//         button.addEventListener('click', () => {
-//             console.log(button.innerText);
-//         })
-//     });
-// }
-
-// allButtons.forEach(button => {
-//     button.disabled = true;
-// });
 
 // var elements=document.getElementById('tasks-table').firstChild;
 // let secondChild = elements.[2];
