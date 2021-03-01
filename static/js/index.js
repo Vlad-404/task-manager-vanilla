@@ -1,51 +1,65 @@
 const tasksTable = document.getElementById('tasks-table');
 
-let tasks = [
-    {
-        taskText: 'First Task',
-        completed: true
-    },
-    {
-        taskText: 'Second Task',
-        completed: false
-    },
-    {
-        taskText: 'Third Task',
-        completed: false
-    }
+let taskList = [
+    // {
+    //     taskText: 'First Task',
+    //     completed: true
+    // },
+    // {
+    //     taskText: 'Second Task',
+    //     completed: false
+    // },
+    // {
+    //     taskText: 'Third Task',
+    //     completed: false
+    // }
 ]
+
+// Stores the tasks in browsers local storage
+// saveList = () => {
+//     if (localStorage.getItem('allTasks')) {
+//         localStorage.setItem('allTasks', '[]');
+//     }
+// }
+// Gets the stored tasks
+// let tasks = JSON.parse(localStorage.getItem('myTasks') || '[]');
 
 // Renders the tasks in HTML
 showTasks = () => {
     tasksTable.innerHTML = '';
     tasksTable.classList.add('mb-4');
+    let tasks = JSON.parse(localStorage.getItem('myTasks'));
 
-    for (let i=0; i < tasks.length; i++) {
-        var task = tasksTable.insertRow(i)
-        task.id = 'task-' + i
+    if (localStorage.getItem('myTasks') == null) {
+        localStorage.setItem('myTasks', '[]');
+    } else {
+        for (let i=0; i < tasks.length; i++) {
+            var task = tasksTable.insertRow(i)
+            task.id = 'task-' + i
 
-        if (tasks[i].completed == true) {
-            task.innerHTML = `
-                <td><input type="checkbox" checked="true" id="check-${i}" onClick="toggle(this)"></td>
-                <td id="text-${i}" class="text-left text-faded">${tasks[i].taskText} (done)</td>
-                <td>
-                    <button id="edit-${i}" class="btn-blue edit-btn">Edit</button>
-                    <button id="cancel-${i}" class="btn-grey mx-1 hide">Cancel</button>
-                    <button id="updatebtn-${i}" class="btn-blue mx-1 hide">Update</button>
-                </td>
-                <td><button id="remove-${i}" class="btn-red" onClick="removeTask(this)">Remove</button></td>
-            `
-        } else {
-            task.innerHTML = `
-                <td><input type="checkbox" id="check-${i}" onClick="toggle(this)"></td>
-                <td id="text-${i}" class="text-left">${tasks[i].taskText}</td>
-                <td>
-                    <button id="edit-${i}" class="btn-blue edit-btn">Edit</button>
-                    <button id="cancel-${i}" class="btn-grey mx-1 hide">Cancel</button>
-                    <button id="updatebtn-${i}" class="btn-blue mx-1 hide">Update</button>
-                </td>
-                <td><button id="remove-${i}" class="btn-red" onClick="removeTask(this)">Remove</button></td>
-            `
+            if (tasks[i].completed == true) {
+                task.innerHTML = `
+                    <td><input type="checkbox" checked="true" id="check-${i}" onClick="toggle(this)"></td>
+                    <td id="text-${i}" class="text-left text-faded">${tasks[i].taskText} (done)</td>
+                    <td>
+                        <button id="edit-${i}" class="btn-blue edit-btn">Edit</button>
+                        <button id="cancel-${i}" class="btn-grey mx-1 hide">Cancel</button>
+                        <button id="updatebtn-${i}" class="btn-blue mx-1 hide">Update</button>
+                    </td>
+                    <td><button id="remove-${i}" class="btn-red" onClick="removeTask(this)">Remove</button></td>
+                `
+            } else {
+                task.innerHTML = `
+                    <td><input type="checkbox" id="check-${i}" onClick="toggle(this)"></td>
+                    <td id="text-${i}" class="text-left">${tasks[i].taskText}</td>
+                    <td>
+                        <button id="edit-${i}" class="btn-blue edit-btn">Edit</button>
+                        <button id="cancel-${i}" class="btn-grey mx-1 hide">Cancel</button>
+                        <button id="updatebtn-${i}" class="btn-blue mx-1 hide">Update</button>
+                    </td>
+                    <td><button id="remove-${i}" class="btn-red" onClick="removeTask(this)">Remove</button></td>
+                `
+            }
         }
     }
     editTask();
@@ -54,47 +68,55 @@ showTasks = () => {
 const refreshBtn = document.getElementById('refresh');
 refreshBtn.addEventListener('click', showTasks);
 
+// Saves the Task
+let taskInput = document.getElementById('add-task');
+// let newTask = taskInput.value;
+
+saveTask = () => {
+    // Gets the tasks from localStorage and creates an array of them
+    let tasks = JSON.parse(localStorage.getItem('myTasks'));
+    tasks.push(
+        {
+            taskText: taskInput.value,
+            completed: false
+        }
+    )
+    taskInput.value = '';   // this one just empties the input field in HTML
+    // Updates the task list in localStorage
+    localStorage.setItem('myTasks', JSON.stringify(tasks));
+    // Renders the task in HTML - this works fine
+    showTasks();
+}
+
 // Adds the task
 addTask = () => {
-    let taskInput = document.getElementById('add-task');
-    let newTask = taskInput.value;
+    // Creates local storage variable if none present
+    if (localStorage.getItem('myTasks') == null) {
+        localStorage.setItem('myTasks', '[]');
+    }
 
-    if (newTask == '') {
+    // Gets the task name and pushes it into local storage
+    if (taskInput.value == '') {
         alert('Please enter a name for your task!')
     } else {
-        tasks.push(
-            {
-                taskText: newTask,
-                completed: false
-            }
-        )
-        taskInput.value = '';
-        showTasks();
+        saveTask();
     }
 }
 
 const addBtn = document.getElementById('add-task-btn');
 addBtn.addEventListener('click', addTask);
 
-const addTaskInput = document.getElementById('add-task');
-addTaskInput.addEventListener('keyup', (e) => {
+taskInput.addEventListener('keyup', (e) => {
     e.preventDefault();
      
     if (e.code == 'Enter') {
-        if (addTaskInput.value == '') {
+        if (taskInput.value == '') {
             alert('Please enter a name for your task!')
         } else {
-            tasks.push(
-                {
-                    taskText: addTaskInput.value,
-                    completed: false
-                }
-            )
-            addTaskInput.value = '';
-            showTasks();
+            saveTask();
         }
     } else if (e.code == 'Escape') {
-        addTaskInput.value = '';
+        taskInput.value = '';
     }
 })
 

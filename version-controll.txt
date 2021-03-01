@@ -1,3 +1,8 @@
+Version 11
+[x] Save tasks to browser storage
+    [x] create variable to store tasks in local storage
+    [x] create variable to get tasks from local storage
+
 Version 10
 [x] Add enter and escape key events for new task input
 
@@ -11,18 +16,18 @@ Version 9
     [x] Add update on enter key
 
 Version 8
-[] Edit functionality
+[x] Edit functionality
     [x] Create input field instead of task text when using edit button
     [x] Add functional cancel button
     [x] Disable edit buttons from other tasks
     [x] Add save on enter key
     [x] Add update task button
-    [] Add update task functionality with a button
+    [x] Add update task functionality with a button
 
 Version 7
 [x] Toggle task completion
 [x] Togle all tasks functionality
-[] Toggle all to finished/not finished
+[x] Toggle all to finished/not finished
 
 Version 6
 [x] Remove all tasks ability
