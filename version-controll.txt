@@ -1,3 +1,6 @@
+Version 12
+[x] Update remove all function to work with localStorage
+
 Version 11
 [x] Save tasks to browser storage
     [x] create variable to store tasks in local storage

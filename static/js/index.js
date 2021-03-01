@@ -1,29 +1,5 @@
 const tasksTable = document.getElementById('tasks-table');
 
-let taskList = [
-    // {
-    //     taskText: 'First Task',
-    //     completed: true
-    // },
-    // {
-    //     taskText: 'Second Task',
-    //     completed: false
-    // },
-    // {
-    //     taskText: 'Third Task',
-    //     completed: false
-    // }
-]
-
-// Stores the tasks in browsers local storage
-// saveList = () => {
-//     if (localStorage.getItem('allTasks')) {
-//         localStorage.setItem('allTasks', '[]');
-//     }
-// }
-// Gets the stored tasks
-// let tasks = JSON.parse(localStorage.getItem('myTasks') || '[]');
-
 // Renders the tasks in HTML
 showTasks = () => {
     tasksTable.innerHTML = '';
@@ -70,37 +46,26 @@ refreshBtn.addEventListener('click', showTasks);
 
 // Saves the Task
 let taskInput = document.getElementById('add-task');
-// let newTask = taskInput.value;
 
-saveTask = () => {
-    // Gets the tasks from localStorage and creates an array of them
-    let tasks = JSON.parse(localStorage.getItem('myTasks'));
-    tasks.push(
-        {
-            taskText: taskInput.value,
-            completed: false
-        }
-    )
-    taskInput.value = '';   // this one just empties the input field in HTML
-    // Updates the task list in localStorage
-    localStorage.setItem('myTasks', JSON.stringify(tasks));
-    // Renders the task in HTML - this works fine
-    showTasks();
-}
-
-// Adds the task
 addTask = () => {
-    // Creates local storage variable if none present
-    if (localStorage.getItem('myTasks') == null) {
-        localStorage.setItem('myTasks', '[]');
-    }
-
-    // Gets the task name and pushes it into local storage
+    // Checks if the add task field is empty
     if (taskInput.value == '') {
         alert('Please enter a name for your task!')
     } else {
-        saveTask();
-    }
+        // Gets the tasks from localStorage and creates an array of them
+        let tasks = JSON.parse(localStorage.getItem('myTasks'));
+        tasks.push(
+            {
+                taskText: taskInput.value,
+                completed: false
+            }
+        )
+        taskInput.value = '';   // this one just empties the input field in HTML
+        // Updates the task list in localStorage
+        localStorage.setItem('myTasks', JSON.stringify(tasks));
+        // Renders the task in HTML - this works fine
+        showTasks();
+        }
 }
 
 const addBtn = document.getElementById('add-task-btn');
@@ -113,7 +78,7 @@ taskInput.addEventListener('keyup', (e) => {
         if (taskInput.value == '') {
             alert('Please enter a name for your task!')
         } else {
-            saveTask();
+            addTask();
         }
     } else if (e.code == 'Escape') {
         taskInput.value = '';
@@ -122,7 +87,9 @@ taskInput.addEventListener('keyup', (e) => {
 
 // Removes all tasks
 removeAll = () => {
+    let tasks = JSON.parse(localStorage.getItem('myTasks'));
     tasks = [];
+    localStorage.setItem('myTasks', JSON.stringify(tasks));
     showTasks();
 }
 
