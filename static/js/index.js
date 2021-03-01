@@ -99,25 +99,33 @@ removeAllBtn.addEventListener('click', removeAll);
 // Removes a single task
 removeTask = (grabbed) => {
     let taskId = grabbed.id.split('-')[1];
+    let tasks = JSON.parse(localStorage.getItem('myTasks'));
     tasks.splice(taskId, 1);
+    localStorage.setItem('myTasks', JSON.stringify(tasks));
     showTasks();
 }
 
 // Toggle Task
 toggle = (grabbed) => {
     let taskId = grabbed.id.split('-')[1];
+    let tasks = JSON.parse(localStorage.getItem('myTasks'));
     let oldStatus = tasks[taskId].completed;
     tasks[taskId].completed = !oldStatus;
+    localStorage.setItem('myTasks', JSON.stringify(tasks));
+
     showTasks();
 }
 
 // Toggle all tasks
 toggleAll = () => {
+    let tasks = JSON.parse(localStorage.getItem('myTasks'));
     for (let i=0; i<tasks.length; i++) {
         if (tasks[i].completed == true) {
             tasks[i].completed = false;
+            localStorage.setItem('myTasks', JSON.stringify(tasks));
         } else {
             tasks[i].completed = true;
+            localStorage.setItem('myTasks', JSON.stringify(tasks));
         }
     }
 
@@ -129,12 +137,15 @@ toggleAllButton.addEventListener('click', toggleAll);
 
 // Toggle all as finished/unfinished
 allToOneStatus = () => {
+    let tasks = JSON.parse(localStorage.getItem('myTasks'));
     for (let i=0; i<tasks.length; i++) {
         let tasksLength = Number(tasks.length - 1);
         if (tasks[tasksLength].completed == true) {
             tasks[i].completed = false;
+            localStorage.setItem('myTasks', JSON.stringify(tasks));
         } else {
             tasks[i].completed = true;
+            localStorage.setItem('myTasks', JSON.stringify(tasks));
         }
     }
 

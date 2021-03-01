@@ -9,3 +9,15 @@ BID: #002
 **Description:** After editing task all edit buttons stay disabled
 - **consequence:** User cannot edit any other tasks
 - **resolution:** Added `editTask` function to `showTasks` so it can be re-initialised each time list is generated
+---
+BID: #003
+
+**Description:** After storing task in local storage, instead of adding tasks, new task overwrote the previous one
+- **consequence:** User couldn't have more than one task
+- **resolution:** Fixed if condition in `showTasks` function from `(localStorage.getItem('myTasks'))` to `(localStorage.getItem('myTasks') == null)`
+---
+
+BID: #004
+**Description:** 
+- **consequence:** 
+- **resolution:**

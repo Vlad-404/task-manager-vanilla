@@ -1,5 +1,12 @@
+Version 13
+[x] Toggle functionality needs to be adapted to work with local storage
+    [x] toggle all needs to work with local storage
+    [x] toggle all to complete/incomplete needs to work with local storage
+    [x] adapt toggle single task to work with local storage
+
 Version 12
 [x] Update remove all function to work with localStorage
+[x] Update remove single task to work with localStorage
 
 Version 11
 [x] Save tasks to browser storage
