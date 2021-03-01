@@ -1,3 +1,9 @@
+Version 15
+[] Add Notification if list is empty
+
+Version 14
+[x] Edit task should work with localStorage
+
 Version 13
 [x] Toggle functionality needs to be adapted to work with local storage
     [x] toggle all needs to work with local storage

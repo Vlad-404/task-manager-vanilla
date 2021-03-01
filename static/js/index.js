@@ -159,6 +159,7 @@ allToOne.addEventListener('click', allToOneStatus);
 // Accept input
 editTask = () => {
     let allEditButtons = Array.from(document.getElementsByClassName('edit-btn'));
+    let tasks = JSON.parse(localStorage.getItem('myTasks'));
     allEditButtons.forEach(button => {
         button.addEventListener('click', () => {
             allEditButtons.forEach(b => {
@@ -213,11 +214,13 @@ editTask = () => {
 
 // Update Task
 updateTask = (id, newText) => {
+    let tasks = JSON.parse(localStorage.getItem('myTasks'));
     if (newText == tasks[id].taskText) {
         return
     } else {
         tasks[id].taskText = newText;
         tasks[id].completed = false;
+        localStorage.setItem('myTasks', JSON.stringify(tasks));
         showTasks();
     }
 }

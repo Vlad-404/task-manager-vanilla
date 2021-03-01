@@ -113,3 +113,10 @@ input[type="checkbox"]{
 #change-title-link {
     width: 15%;
 }
+
+#empty-list {
+    background-color: #eee;
+    display: hidden;
+    width: 100%;
+    text-align: center;
+  }
