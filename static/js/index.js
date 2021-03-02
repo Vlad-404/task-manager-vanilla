@@ -8,9 +8,14 @@ showTasks = () => {
     let tasks = JSON.parse(localStorage.getItem('myTasks'));
 
     if (localStorage.getItem('myTasks') == null) {
-        emptyListDiv.classList.remove('hide');
         localStorage.setItem('myTasks', '[]');
+        emptyListDiv.classList.remove('hide');
     } else {
+        if (localStorage.getItem('myTasks') == '[]') {
+            emptyListDiv.classList.remove('hide');
+        } else {
+            emptyListDiv.className = 'hide';
+        }
         for (let i=0; i < tasks.length; i++) {
             var task = tasksTable.insertRow(i)
             task.id = 'task-' + i

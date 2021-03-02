@@ -18,6 +18,12 @@ BID: #003
 ---
 
 BID: #004
+**Description:** `#empty-list` was overflowing from the page
+- **consequence:** it was disrupting the page outlook
+- **resolution:** removed `width: 100%` from css
+---
+
+BID: #005
 **Description:** 
 - **consequence:** 
 - **resolution:**
