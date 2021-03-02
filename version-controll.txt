@@ -1,5 +1,7 @@
 Version 15
 [] Add Notification if list is empty
+    [x] create and style the notification
+    [] make notification visible only when list is empty
 
 Version 14
 [x] Edit task should work with localStorage

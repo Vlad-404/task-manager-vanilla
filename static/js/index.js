@@ -1,4 +1,5 @@
 const tasksTable = document.getElementById('tasks-table');
+const emptyListDiv = document.getElementById('empty-list')
 
 // Renders the tasks in HTML
 showTasks = () => {
@@ -7,6 +8,7 @@ showTasks = () => {
     let tasks = JSON.parse(localStorage.getItem('myTasks'));
 
     if (localStorage.getItem('myTasks') == null) {
+        emptyListDiv.classList.remove('hide');
         localStorage.setItem('myTasks', '[]');
     } else {
         for (let i=0; i < tasks.length; i++) {
@@ -43,6 +45,10 @@ showTasks = () => {
 
 const refreshBtn = document.getElementById('refresh');
 refreshBtn.addEventListener('click', showTasks);
+
+// reloadPage = () => {
+//     location.reload();
+// }
 
 // Saves the Task
 let taskInput = document.getElementById('add-task');
@@ -277,6 +283,10 @@ updateTitle = (newTitle) => {
 
 editTask();
 showTasks();
+
+emptyListNotification = () => {
+    document.getElementById('empty-list').classList.toggle('hide');
+}
 
 // var elements=document.getElementById('tasks-table').firstChild;
 // let secondChild = elements.[2];
