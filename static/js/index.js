@@ -51,10 +51,6 @@ showTasks = () => {
 const refreshBtn = document.getElementById('refresh');
 refreshBtn.addEventListener('click', showTasks);
 
-// reloadPage = () => {
-//     location.reload();
-// }
-
 // Saves the Task
 let taskInput = document.getElementById('add-task');
 
@@ -281,17 +277,30 @@ titleInput.addEventListener('keyup', (e) => {
 
 // Updates task list title
 updateTitle = (newTitle) => {
-    document.getElementById('list-title').innerText = newTitle;
-    titleInput.value = '';
-    toggleTitleToolsVisibility();
+    if (localStorage.getItem('myTitle') == null) {
+        localStorage.setItem('myTitle', '');
+    } else {    
+        document.getElementById('list-title').innerText = newTitle;
+        titleInput.value = '';
+        localStorage.setItem('myTitle', newTitle);
+
+        toggleTitleToolsVisibility();
+    }
 }
 
+// displays the title from local storage
+displayTitle = () => {
+    if (localStorage.getItem('myTitle') == null) {
+        localStorage.setItem('myTitle', '');
+    } else {
+        let taskListTitle = localStorage.getItem('myTitle');
+        document.getElementById('list-title').innerText = taskListTitle;
+    }
+}
+
+displayTitle();
 editTask();
 showTasks();
-
-emptyListNotification = () => {
-    document.getElementById('empty-list').classList.toggle('hide');
-}
 
 // var elements=document.getElementById('tasks-table').firstChild;
 // let secondChild = elements.[2];

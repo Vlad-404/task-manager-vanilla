@@ -1,3 +1,7 @@
+Version 16
+[x] Save task list title to local storage
+[x] Get the task list title from local storage
+
 Version 15
 [x] Add Notification if list is empty
     [x] create and style the notification
